@@ -4,6 +4,7 @@ public class Application {
     private String ip;
     private String port;
     private String name;
+    private String type;
     private long expireDate;
     private long registerDate;
 
@@ -31,6 +32,14 @@ public class Application {
         this.name = name;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public long getExpireDate() {
         return expireDate;
     }
@@ -50,9 +59,11 @@ public class Application {
     public String getService() {
         return this.ip + ':' + this.port + '/' + this.name;
     }
+
     public String getServiceId() {
         return String.valueOf(getService().hashCode());
     }
+
     public String getServiceId(String service) {
         return String.valueOf(service.hashCode());
     }

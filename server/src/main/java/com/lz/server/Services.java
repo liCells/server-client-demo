@@ -2,6 +2,7 @@ package com.lz.server;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
@@ -10,6 +11,12 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Component
 public class Services {
+
+    @Value("${service.server.delay:10000}")
+    private Integer delay;
+
+    @Value("${service.server.period:10000}")
+    private Integer period;
 
     Logger log = LoggerFactory.getLogger(Services.class);
 
@@ -28,8 +35,9 @@ public class Services {
     }
 
     public boolean offline(String serviceId) {
-        Application removed = Services.APPLICATIONS.remove(serviceId);
-        if (removed == null) {
+        Application removed = APPLICATIONS.remove(serviceId);
+        boolean isRemove = SERVICES.remove(serviceId);
+        if (removed == null && isRemove) {
             return false;
         }
         log.info("Offline -> {}", removed.getService());
@@ -44,6 +52,6 @@ public class Services {
             public void run() {
                 offline();
             }
-        }, 10000, 10000);
+        }, delay, period);
     }
 }

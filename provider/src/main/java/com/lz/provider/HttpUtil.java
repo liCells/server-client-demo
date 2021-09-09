@@ -2,7 +2,6 @@ package com.lz.provider;
 
 import com.google.gson.Gson;
 
-import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -11,13 +10,13 @@ import java.time.Duration;
 
 public class HttpUtil {
 
-    public static void doPost(String httpUrl, Object obj) {
-        HttpClient client = HttpClient.newBuilder()
-                .version(HttpClient.Version.HTTP_2)
-                .connectTimeout(Duration.ofSeconds(5))
-                .followRedirects(HttpClient.Redirect.ALWAYS)
-                .build();
+    private final static HttpClient client = HttpClient.newBuilder()
+            .version(HttpClient.Version.HTTP_2)
+            .connectTimeout(Duration.ofSeconds(5))
+            .followRedirects(HttpClient.Redirect.ALWAYS)
+            .build();
 
+    public static HttpResponse<?> doPost(String httpUrl, Object obj) {
         String json = new Gson().toJson(obj);
 
         HttpRequest.BodyPublisher requestBody = HttpRequest.BodyPublishers
@@ -30,9 +29,10 @@ public class HttpUtil {
                 .build();
 
         try {
-            client.send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException | InterruptedException e) {
+            return client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
     }
 

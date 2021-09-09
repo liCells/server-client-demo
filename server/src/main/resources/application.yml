@@ -1,1 +1,6 @@
-
+service:
+  server:
+    root-path: root
+    offline:
+      delay: 10000
+      period: 10000

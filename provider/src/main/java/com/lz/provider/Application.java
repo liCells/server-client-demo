@@ -4,6 +4,7 @@ public class Application {
     private String ip;
     private String port;
     private String name;
+    private String type;
     private long expireDate;
     private long registerDate;
 
@@ -31,6 +32,14 @@ public class Application {
         this.name = name;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public long getExpireDate() {
         return expireDate;
     }
@@ -47,10 +56,11 @@ public class Application {
         this.registerDate = registerDate;
     }
 
-    public Application(String ip, String port, String name) {
+    public Application(String ip, String port, String name, String type) {
         this.ip = ip;
         this.port = port;
         this.name = name;
+        this.type = type;
     }
 
 }

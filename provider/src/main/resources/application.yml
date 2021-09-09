@@ -1,7 +1,6 @@
 spring:
   profiles:
-    active: 8081
-
+    active: 8082
 ---
 spring:
   config:
@@ -12,6 +11,8 @@ spring:
 service:
   server:
     url: http://localhost:8080/register
+  client:
+    type: provider
 server:
   port: 8081
 ---
@@ -24,3 +25,7 @@ spring:
 service:
   server:
     url: http://localhost:8080/register
+  client:
+    type: consumer
+server:
+  port: 8082
