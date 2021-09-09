@@ -12,7 +12,7 @@ import java.util.Map;
 @RestController
 public class ProviderRegister {
 
-    Logger log = LoggerFactory.getLogger(RestController.class);
+    Logger log = LoggerFactory.getLogger(ProviderRegister.class);
 
     private final Services services;
 
