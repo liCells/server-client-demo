@@ -1,0 +1,26 @@
+spring:
+  profiles:
+    active: 8081
+
+---
+spring:
+  config:
+    activate:
+      on-profile: 8081
+  application:
+    name: provider
+service:
+  server:
+    url: http://localhost:8080/register
+server:
+  port: 8081
+---
+spring:
+  config:
+    activate:
+      on-profile: 8082
+  application:
+    name: consumer
+service:
+  server:
+    url: http://localhost:8080/register
