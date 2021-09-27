@@ -24,9 +24,6 @@ public class Heartbeat {
     @Value("${service.server.delay:3000}")
     private Integer delay;
 
-    @Value("${service.server.period:3000}")
-    private Integer period;
-
     private final Environment environment;
 
     public Heartbeat(Environment environment) {
@@ -45,7 +42,7 @@ public class Heartbeat {
                     log.warn("Register -> {}", response);
                 }
             }
-        }, delay, period);
+        }, delay);
     }
 
     private Application getApplication() {
