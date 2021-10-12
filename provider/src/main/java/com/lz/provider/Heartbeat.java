@@ -21,7 +21,7 @@ public class Heartbeat {
     @Value("${service.server.url}")
     private String url;
 
-    @Value("${service.server.delay:3000}")
+    @Value("${service.server.delay:30000}")
     private Integer delay;
 
     private final Environment environment;
